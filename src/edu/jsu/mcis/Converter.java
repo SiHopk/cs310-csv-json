@@ -70,7 +70,7 @@ public class Converter {
             
             // INSERT YOUR CODE HERE
             JSONArray colHeaders = new JSONArray();
-            JSONArray rows = new JSONArray();
+            JSONArray rowHeaders = new JSONArray();
             JSONArray data = new JSONArray();
             JSONObject x = new JSONObject();
             String[] line = iterator.next();
@@ -82,14 +82,14 @@ public class Converter {
             {
             JSONArray dataLine = new JSONArray();
                 line = iterator.next();
-                rows.add(line[0]);
+                rowHeaders.add(line[0]);
                 for(int i = 1; i < line.length; i++){
                     dataLine.add(Integer.parseInt(line[i]));
                 }
                 data.add(dataLine);
             }
             x.put("colHeaders", colHeaders);
-            x.put("rowHeaders", rows);
+            x.put("rowHeaders", rowHeaders);
             x.put("data", data);
             results = x.toJSONString();
         }        
