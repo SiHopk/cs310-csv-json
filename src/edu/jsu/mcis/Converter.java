@@ -69,7 +69,29 @@ public class Converter {
             Iterator<String[]> iterator = full.iterator();
             
             // INSERT YOUR CODE HERE
-            
+            JSONArray colHeaders = new JSONArray();
+            JSONObject x = new JSONObject();
+            String[] line = iterator.next();
+            for(String i : line)
+            {
+                colHeaders.add(i);
+            }
+            JSONArray rows = new JSONArray();
+            JSONArray data = new JSONArray();
+            while(iterator.hasNext())
+            {
+            JSONArray dataLine = new JSONArray();
+                line = iterator.next();
+                rows.add(line[0]);
+                for(int i = 1; i < line.length; i++){
+                    dataLine.add(Integer.parseInt(line[i]));
+                }
+                data.add(dataLine);
+            }
+            x.put("colHeaders", colHeaders);
+            x.put("rowHeaders", rows);
+            x.put("data", data);
+            results = x.toJSONString();
         }        
         catch(Exception e) { return e.toString(); }
         
@@ -110,17 +132,20 @@ public class Converter {
             String Col[] = Cols.toArray(new String[Cols.size()]);
             csvWriter.writeNext(Col);
             ArrayList<String[]> datas = new ArrayList<>();
-            for (int i=0;i<Data.size();i++){ 
+            for (int i=0;i<Data.size();i++)
+            { 
                 String[] x = Data.get(i).toString().split(",");
                 x[0] = x[0].replace("[", "");
                 x[x.length-1] = x[x.length-1].replace("]", "");
                 datas.add(x);
             }
-            for(int i = 0; i < datas.size(); i++){
+            for(int i = 0; i < datas.size(); i++)
+            {
                 String[] line = new String[datas.get(0).length+1];
                 String[] dat = datas.get(i);
                 line[0] = Rows.get(i);
-                for(int j = 1; j < dat.length+1;j++){
+                for(int j = 1; j < dat.length+1;j++)
+                {
                     line[j] = dat[j-1];
                 }
                 csvWriter.writeNext(line);
