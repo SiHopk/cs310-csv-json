@@ -70,14 +70,14 @@ public class Converter {
             
             // INSERT YOUR CODE HERE
             JSONArray colHeaders = new JSONArray();
+            JSONArray rows = new JSONArray();
+            JSONArray data = new JSONArray();
             JSONObject x = new JSONObject();
             String[] line = iterator.next();
             for(String i : line)
             {
                 colHeaders.add(i);
             }
-            JSONArray rows = new JSONArray();
-            JSONArray data = new JSONArray();
             while(iterator.hasNext())
             {
             JSONArray dataLine = new JSONArray();
