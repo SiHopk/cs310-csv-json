@@ -111,10 +111,10 @@ public class Converter {
             csvWriter.writeNext(Col);
             ArrayList<String[]> datas = new ArrayList<>();
             for (int i=0;i<Data.size();i++){ 
-                String[] dat = Data.get(i).toString().split(",");
-                dat[0] = dat[0].replace("[", "");
-                dat[dat.length-1] = dat[dat.length-1].replace("]", "");
-                datas.add(dat);
+                String[] x = Data.get(i).toString().split(",");
+                x[0] = x[0].replace("[", "");
+                x[x.length-1] = x[x.length-1].replace("]", "");
+                datas.add(x);
             }
             for(int i = 0; i < datas.size(); i++){
                 String[] line = new String[datas.get(0).length+1];
@@ -125,8 +125,7 @@ public class Converter {
                 }
                 csvWriter.writeNext(line);
             }
-            System.out.println(writer);
-            
+            results = writer.toString();
         }
         
         catch(Exception e) { return e.toString(); }
